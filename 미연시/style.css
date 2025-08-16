@@ -42,7 +42,7 @@ body, html {
 }
 
 #background-layer {
-    background-image: url(''); /* 임시 배경 */
+    background-image: url('https://postfiles.pstatic.net/MjAyNTA4MTZfMTkg/MDAxNzU1MzI3NzYxMzA0.a2K6hiLekQaiYebGYnLl284SS4P3FaQnZQYXDDUynU4g.EmxlM45z3-ur28EO0UB4l4OEhOX00_8bMgqxuJrHM5Ag.JPEG/%EC%B2%AD%EB%85%84%EB%B9%84.jpg?type=w3840'); /* 임시 배경 */
     background-size: cover;
     background-position: center;
     z-index: 1;

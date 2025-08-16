@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const story = [
         // 1. 철산 맥도날드 씬
-        { speaker: "우주", text: "아니, 남규빈 언제 오는 거야? ㅡㅡ" },
+        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/5d404ae95dad2276f134eda9bc0f87f4c644429a/%EC%B2%A0%EC%82%B0%20%EB%A7%A5%EB%8F%84%EB%82%A0%EB%93%9C.png?raw=true', speaker: "우주", text: "아니, 남규빈 언제 오는 거야? ㅡㅡ" },
         { text: "전화벨이 울리고, 우주가 전화를 받는다." },
         { speaker: "우주", text: "야 너 어디야? 언제 와??" },
         { speaker: "규빈(전화)", text: "야, 미안. 오늘은 못 갈 거 같아. 갑자기 집에 일 생겨서." },
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "우주는 투덜거리면서도 결국 짐을 챙겨 청년동으로 향했다." },
 
         // 2. 청년동 도착 – 로비 씬
-        { text: "엘리베이터 문이 열리자 넓고 조용한 로비가 보인다." },
+        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg?raw=true', text: "엘리베이터 문이 열리자 넓고 조용한 로비가 보인다." },
         { speaker: "우주", text: "오랜만이네… 진짜 몇 달 만이지?" },
         { text: "로비 한쪽에 인포데스크와 휴게 공간이 보이지만 사람은 거의 없다." },
         { text: "우주는 사물함이 있는 구역으로 이동했다." },
