@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+/* 기본 스타일 초기화 */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Noto Sans KR', sans-serif; /* Noto Sans KR 적용 */
+}
+
+/* 게임 컨테이너 - 반응형 비율 유지 */
+#game-container {
+    width: 100vw;
+    height: calc(100vw * 9 / 16); /* 16:9 비율 */
+    max-width: 1920px;
+    max-height: 1080px;
+    position: relative;
+    background-color: #333; /* 임시 배경색 */
+}
+
+/* 화면이 세로로 더 길 경우 (모바일 등) */
+@media (orientation: portrait) {
+    #game-container {
+        height: 100vh;
+        width: calc(100vh * 16 / 9); /* 16:9 비율 */
+    }
+}
+
+/* 레이어 스타일 */
+#background-layer, #character-layer, #dialogue-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#background-layer {
+    background-image: url('https://postfiles.pstatic.net/MjAyNTA4MTZfMTkg/MDAxNzU1MzI3NzYxMzA0.a2K6hiLekQaiYebGYnLl284SS4P3FaQnZQYXDDUynU4g.EmxlM45z3-ur28EO0UB4l4OEhOX00_8bMgqxuJrHM5Ag.JPEG/%EC%B2%AD%EB%85%84%EB%B9%84.jpg?type=w3840'); /* 임시 배경 */
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+#character-layer {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#character-layer img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+/* --- 대화창 UI 개선 --- */
+#dialogue-layer {
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 2%; /* 하단 여백 */
+    box-sizing: border-box;
+}
+
+#dialogue-box {
+    width: 100%;
+    height: 30%; /* 대화창 높이 */
+    background-color: #eaf4f4; /* 테마 색상 적용 */
+    border-radius: 15px;
+    position: relative; /* 이름, 대사, 버튼의 기준점 */
+    padding: 2.5%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+}
+
+#speaker-name {
+    background-color: #4e8d7c; /* 테마 색상 적용 */
+    color: #eaf4f4; /* 테마 텍스트 색상 */
+    padding: 0.8% 2%;
+    border-radius: 10px;
+    font-size: 4.2vmin;
+    font-weight: 700; /* 굵은 폰트 */
+    position: absolute;
+    left: 3%;
+    top: 0;
+    transform: translateY(-50%);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#dialogue-text {
+    color: #2c3e50; /* 테마 텍스트 색상 */
+    font-size: 3.75vmin;
+    line-height: 1.6;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    font-weight: 400; /* 일반 굵기 */
+}
+
+#next-button {
+    position: absolute;
+    right: 3%;
+    bottom: 10%;
+    padding: 1% 2%;
+    font-size: 3.3vmin;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #2c3e50; /* 테마 색상 적용 */
+    color: #eaf4f4; /* 테마 텍스트 색상 */
+    z-index: 10;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+#next-button:hover {
+    background-color: #4e8d7c; /* 테마 색상 적용 */
+    color: #eaf4f4;
+}
