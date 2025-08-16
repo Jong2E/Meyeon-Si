@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <title>관리자 페이지</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; background-color: #f8f9fa; }
+    #auth, #admin-panel { max-width: 800px; margin: auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .hidden { display: none; }
+    h1, h2 { text-align: center; color: #343a40; }
+    input, select, button { width: 100%; padding: 10px; margin: 5px 0; box-sizing: border-box; border-radius: 4px; border: 1px solid #ced4da; }
+    button { background-color: #007bff; color: white; border: none; cursor: pointer; font-size: 16px; }
+    button:hover { background-color: #0056b3; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #dee2e6; padding: 8px; text-align: left; }
+    th { background-color: #e9ecef; }
+    .actions button { width: auto; padding: 5px 10px; font-size: 12px; margin-right: 5px; }
+    .edit-btn { background-color: #ffc107; }
+    .delete-btn { background-color: #dc3545; }
+    #form-container { margin-top: 30px; padding: 20px; border: 1px solid #dee2e6; border-radius: 8px; }
+    .error-message { color: #dc3545; font-size: 14px; text-align: center; margin-top: 10px; display: none; }
+  </style>
+</head>
+<body>
+
+<div id="auth">
+  <h1>관리자 로그인</h1>
+  <input type="password" id="password" placeholder="비밀번호를 입력하세요" oninput="clearError()">
+  <button onclick="login()">로그인</button>
+  <p id="error-message" class="error-message"></p>
+</div>
+
+<div id="admin-panel" class="hidden">
+  <h1>커리큘럼 관리</h1>
+  
+  <div id="form-container">
+    <h2 id="form-title">새 커리큘럼 추가</h2>
+    <input type="hidden" id="edit-id">
+    <input type="text" id="cat1" placeholder="1차 카테고리 (예: 일반/사무)">
+    <input type="text" id="cat2" placeholder="2차 카테고리 (예: 스프레드시트)">
+    <input type="text" id="title" placeholder="커리큘럼 제목 (예: 엑셀 기본)">
+    <input type="text" id="details" placeholder="상세 내용">
+    <input type="number" id="time" placeholder="소요 시간 (분 단위)">
+    <input type="text" id="tool" placeholder="활용 툴 (예: MS Office)">
+    <button id="save-btn" onclick="saveCurriculum()">저장</button>
+    <button id="cancel-btn" class="hidden" onclick="cancelEdit()">취소</button>
+  </div>
+
+  <h2>커리큘럼 목록</h2>
+  <table id="curriculum-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>1차 카테고리</th>
+        <th>2차 카테고리</th>
+        <th>제목</th>
+        <th>시간(분)</th>
+        <th>작업</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 데이터가 여기에 동적으로 추가됩니다 -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+function login() {
+  const password = document.getElementById('password').value;
+  const errorMessage = document.getElementById('error-message');
+  google.script.run.withSuccessHandler(isAdmin => {
+    if (isAdmin) {
+      errorMessage.style.display = 'none';
+      document.getElementById('auth').classList.add('hidden');
+      document.getElementById('admin-panel').classList.remove('hidden');
+      loadCurriculums();
+    } else {
+      errorMessage.textContent = '비밀번호가 틀렸습니다.';
+      errorMessage.style.display = 'block';
+    }
+  }).checkPassword(password);
+}
+
+function clearError() {
+    document.getElementById('error-message').style.display = 'none';
+}
+
+function loadCurriculums() {
+  google.script.run.withSuccessHandler(data => {
+    const tbody = document.querySelector('#curriculum-table tbody');
+    tbody.innerHTML = '';
+    data.forEach(item => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${item.id}</td>
+        <td>${item.cat1}</td>
+        <td>${item.cat2}</td>
+        <td>${item.title}</td>
+        <td>${item.time}</td>
+        <td class="actions">
+          <button class="edit-btn" onclick='editItem(${JSON.stringify(item)})'>수정</button>
+          <button class="delete-btn" onclick="deleteItem(${item.id})">삭제</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }).getCurriculumData();
+}
+
+function saveCurriculum() {
+  const id = document.getElementById('edit-id').value;
+  const data = {
+    cat1: document.getElementById('cat1').value,
+    cat2: document.getElementById('cat2').value,
+    title: document.getElementById('title').value,
+    details: document.getElementById('details').value,
+    time: document.getElementById('time').value,
+    tool: document.getElementById('tool').value
+  };
+
+  if (id) { // 수정
+    data.id = id;
+    google.script.run.withSuccessHandler(response => {
+      if(response.success) {
+        alert('수정되었습니다.');
+        loadCurriculums();
+        cancelEdit();
+      }
+    }).updateCurriculum(data);
+  } else { // 추가
+    google.script.run.withSuccessHandler(response => {
+      if(response.success) {
+        alert('추가되었습니다.');
+        loadCurriculums();
+        resetForm();
+      }
+    }).addCurriculum(data);
+  }
+}
+
+function editItem(item) {
+  document.getElementById('form-title').textContent = '커리큘럼 수정';
+  document.getElementById('edit-id').value = item.id;
+  document.getElementById('cat1').value = item.cat1;
+  document.getElementById('cat2').value = item.cat2;
+  document.getElementById('title').value = item.title;
+  document.getElementById('details').value = item.details;
+  document.getElementById('time').value = item.time;
+  document.getElementById('tool').value = item.tool;
+  document.getElementById('save-btn').textContent = '수정 완료';
+  document.getElementById('cancel-btn').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+function deleteItem(id) {
+  if (confirm('정말로 이 항목을 삭제하시겠습니까?')) {
+    google.script.run.withSuccessHandler(response => {
+      if(response.success) {
+        alert('삭제되었습니다.');
+        loadCurriculums();
+      }
+    }).deleteCurriculum(id);
+  }
+}
+
+function resetForm() {
+    document.getElementById('edit-id').value = '';
+    document.getElementById('cat1').value = '';
+    document.getElementById('cat2').value = '';
+    document.getElementById('title').value = '';
+    document.getElementById('details').value = '';
+    document.getElementById('time').value = '';
+    document.getElementById('tool').value = '';
+}
+
+function cancelEdit() {
+  resetForm();
+  document.getElementById('form-title').textContent = '새 커리큘럼 추가';
+  document.getElementById('save-btn').textContent = '저장';
+  document.getElementById('cancel-btn').classList.add('hidden');
+}
+
+</script>
+</body>
+</html>
