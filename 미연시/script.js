@@ -13,18 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. 청년동 도착 – 로비 씬
         { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg?raw=true', text: "엘리베이터 문이 열리자 넓고 조용한 로비가 보인다." },
-        { speaker: "우주", text: "오랜만이네… 진짜 몇 달 만이지?" },
-        { text: "로비 한쪽에 인포데스크와 휴게 공간이 보이지만 사람은 거의 없다." },
-        { text: "우주는 사물함이 있는 구역으로 이동했다." },
+        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg?raw=true', speaker: "우주", text: "오랜만이네… 진짜 몇 달 만이지?" },
+        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg?raw=true', text: "로비 한쪽에 인포데스크와 휴게 공간이 보이지만 사람은 거의 없다." },
+        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%B2%AD%EB%85%84%EB%8F%99%20%EC%82%AC%EB%AC%BC%ED%95%A8.jpg?raw=true', text: "우주는 사물함이 있는 구역으로 이동했다." },
 
         // 3. 사물함 씬
         { text: "사물함 구역에 도착한 우주가 자기 사물함 문을 열자, 안에 접힌 쪽지가 있다." },
-        { text: "“우주야, 지난번에 도와줘서 고마웠어. 그거 보답하고 싶은데, 회의실 2번으로 와줄 수 있어? 내가 너한데 줄 편지를 적어놨어…!”" },
+        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%82%AC%EB%AC%BC%ED%95%A8_%EC%AA%BD%EC%A7%80.png?raw=true', text: "“우주야, 지난번에 도와줘서 고마웠어. 그거 보답하고 싶은데, 회의실 2번으로 와줄 수 있어? 내가 너한데 줄 편지를 적어놨어…!”" },
         { speaker: "우주", text: "회의실 2번…? 고마웠다고…? 편지…? 무슨 소리지…?" },
         { text: "우주는 호기심에 회의실 2번으로 향했다." },
 
         // 4. 회의실 2번 씬
-        { text: "우주가 문을 열고 들어가자, 안에는 유설하가 서 있다." },
+        { text: "우주가 문을 열고 회의실 2번으로 들어갔다." },
+        { text: "우주는 쪽지를 찾기 위해 주위를 둘러보며 집중하고 있었다." },
         { speaker: "설하", text: "여기서 뭐해?" },
         { speaker: "우주", text: "아… 이 쪽지 보고 왔는데." },
         { text: "우주가 쪽지를 보여주자, 설하가 다른 쪽지를 보여준다." },
