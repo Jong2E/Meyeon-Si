@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const story = [
         // 1. 철산 맥도날드 씬
-        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/5d404ae95dad2276f134eda9bc0f87f4c644429a/%EC%B2%A0%EC%82%B0%20%EB%A7%A5%EB%8F%84%EB%82%A0%EB%93%9C.png?raw=true', speaker: "우주", text: "아니, 남규빈 언제 오는 거야? ㅡㅡ" },
+        { background: './철산 맥도날드.png', speaker: "우주", text: "아니, 남규빈 언제 오는 거야? ㅡㅡ" },
         { text: "전화벨이 울리고, 우주가 전화를 받는다." },
         { speaker: "우주", text: "야 너 어디야? 언제 와??" },
         { speaker: "규빈(전화)", text: "야, 미안. 오늘은 못 갈 거 같아. 갑자기 집에 일 생겨서." },
@@ -12,14 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "우주는 투덜거리면서도 결국 짐을 챙겨 청년동으로 향했다." },
 
         // 2. 청년동 도착 – 로비 씬
-        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg?raw=true', text: "엘리베이터 문이 열리자 넓고 조용한 로비가 보인다." },
-        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg?raw=true', speaker: "우주", text: "오랜만이네… 진짜 몇 달 만이지?" },
-        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg?raw=true', text: "로비 한쪽에 인포데스크와 휴게 공간이 보이지만 사람은 거의 없다." },
-        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%B2%AD%EB%85%84%EB%8F%99%20%EC%82%AC%EB%AC%BC%ED%95%A8.jpg?raw=true', text: "우주는 사물함이 있는 구역으로 이동했다." },
+        { background: './청년동 로비.jpg', text: "엘리베이터 문이 열리자 넓고 조용한 로비가 보인다." },
+        { background: './청년동 로비.jpg', speaker: "우주", text: "오랜만이네… 진짜 몇 달 만이지?" },
+        { background: './청년동 로비.jpg', text: "로비 한쪽에 인포데스크와 휴게 공간이 보이지만 사람은 거의 없다." },
+        { background: './청년동 사물함.jpg', text: "우주는 사물함이 있는 구역으로 이동했다." },
 
         // 3. 사물함 씬
         { text: "사물함 구역에 도착한 우주가 자기 사물함 문을 열자, 안에 접힌 쪽지가 있다." },
-        { background: 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%82%AC%EB%AC%BC%ED%95%A8_%EC%AA%BD%EC%A7%80.png?raw=true', text: "“우주야, 지난번에 도와줘서 고마웠어. 그거 보답하고 싶은데, 회의실 2번으로 와줄 수 있어? 내가 너한데 줄 편지를 적어놨어…!”" },
+        { background: './사물함_쪽지.png', text: "“우주야, 지난번에 도와줘서 고마웠어. 그거 보답하고 싶은데, 회의실 2번으로 와줄 수 있어? 내가 너한데 줄 편지를 적어놨어…!”" },
         { speaker: "우주", text: "회의실 2번…? 고마웠다고…? 편지…? 무슨 소리지…?" },
         { text: "우주는 호기심에 회의실 2번으로 향했다." },
 
