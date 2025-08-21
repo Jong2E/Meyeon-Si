@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 화자에 따른 캐릭터 이미지 자동 설정
             if (scene.speaker === "우주") {
-                // 로컬 파일 먼저 시도, 실패하면 GitHub URL 사용
-                characterImage = './남주.png';
+                // 새로운 우주 이미지 사용
+                characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EB%82%A8%EC%A3%BC%201.png?raw=true';
             } else if (scene.speaker === "설하") {
                 // 새로운 배경 제거된 설하 이미지 사용
                 characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80-removebg-preview%201.png?raw=true';
@@ -111,7 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 charImg.onerror = function() {
                     console.log('Local image failed, trying GitHub URL...');
                     if (scene.speaker === "우주") {
-                        this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EB%82%A8%EC%A3%BC.png';
+                        // 새로운 우주 이미지 URL
+                        this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EB%82%A8%EC%A3%BC%201.png';
                     } else if (scene.speaker === "설하") {
                         // 새로운 배경 제거된 설하 이미지 URL
                         this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80-removebg-preview%201.png';
