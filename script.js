@@ -107,6 +107,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const charImg = document.createElement('img');
                 charImg.src = characterImage;
                 
+                // 캐릭터별 개별 스타일 적용
+                if (scene.speaker === "우주") {
+                    // 우주는 설하와 같은 크기로 조정
+                    charImg.style.transform = 'scale(1.5)';
+                    charImg.style.transformOrigin = 'bottom center';
+                } else if (scene.speaker === "설하") {
+                    // 설하는 기본 크기 유지하고 살짝 아래로 이동
+                    charImg.style.transform = 'scale(1.5) translateY(5%)';
+                    charImg.style.transformOrigin = 'bottom center';
+                }
+                
                 // 로컬 이미지 로드 실패 시 GitHub URL로 대체
                 charImg.onerror = function() {
                     console.log('Local image failed, trying GitHub URL...');
