@@ -80,12 +80,32 @@ document.addEventListener('DOMContentLoaded', () => {
             backgroundLayer.style.backgroundImage = `url('${scene.background}')`;
         }
 
-        // 캐릭터 변경 (필요한 경우)
+        // 캐릭터 변경 - 화자에 따라 자동으로 캐릭터 이미지 설정
         characterLayer.innerHTML = ''; // 이전 캐릭터 이미지 제거
+        
+        // scene.character가 명시적으로 지정된 경우 사용
         if (scene.character) {
             const charImg = document.createElement('img');
             charImg.src = scene.character;
             characterLayer.appendChild(charImg);
+        } 
+        // speaker가 있는 경우 자동으로 캐릭터 이미지 매칭
+        else if (scene.speaker) {
+            let characterImage = null;
+            
+            // 화자에 따른 캐릭터 이미지 자동 설정
+            if (scene.speaker === "우주") {
+                characterImage = './남주.png';
+            } else if (scene.speaker === "설하") {
+                characterImage = './여주_쪽지.png';
+            }
+            // 규빈(전화)는 캐릭터 이미지 표시하지 않음
+            
+            if (characterImage) {
+                const charImg = document.createElement('img');
+                charImg.src = characterImage;
+                characterLayer.appendChild(charImg);
+            }
         }
 
         // 화자 이름 및 대사 업데이트
@@ -99,14 +119,25 @@ document.addEventListener('DOMContentLoaded', () => {
         dialogueText.textContent = scene.text;
     }
 
-    nextButton.addEventListener('click', () => {
+    // 다음 장면으로 이동하는 함수
+    function nextScene() {
         currentScene++;
         if (currentScene < story.length) {
             showScene(currentScene);
         } else {
-            // TODO: 엔딩 처리
+            // 엔딩 처리
             dialogueText.textContent = "- The End -";
             nextButton.style.display = 'none';
+        }
+    }
+
+    // 클릭 이벤트
+    nextButton.addEventListener('click', nextScene);
+
+    // Enter 키 이벤트 추가
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' && currentScene < story.length) {
+            nextScene();
         }
     });
 

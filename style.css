@@ -53,12 +53,14 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    padding-bottom: 32%; /* 대화창 높이만큼 패딩 추가 */
 }
 
 #character-layer img {
-    max-width: 80%;
-    max-height: 80%;
+    max-width: 40%; /* 캐릭터 크기 조정 */
+    max-height: 60%; /* 화면의 60% 정도 높이 */
     object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3)); /* 그림자 효과 추가 */
 }
 
 /* --- 대화창 UI 개선 --- */
