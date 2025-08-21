@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const speakerName = document.getElementById('speaker-name');
     const dialogueText = document.getElementById('dialogue-text');
     const nextButton = document.getElementById('next-button');
+    const prevButton = document.getElementById('prev-button');
 
     function showScene(sceneIndex) {
         const scene = story[sceneIndex];
@@ -168,15 +169,42 @@ document.addEventListener('DOMContentLoaded', () => {
         currentScene++;
         if (currentScene < story.length) {
             showScene(currentScene);
+            updateButtonStates();
         } else {
             // 엔딩 처리
             dialogueText.textContent = "- The End -";
             nextButton.style.display = 'none';
+            prevButton.style.display = 'block';
+        }
+    }
+
+    // 이전 장면으로 이동하는 함수
+    function prevScene() {
+        if (currentScene > 0) {
+            currentScene--;
+            showScene(currentScene);
+            updateButtonStates();
+            
+            // 엔딩에서 돌아온 경우 다음 버튼 다시 표시
+            if (nextButton.style.display === 'none') {
+                nextButton.style.display = 'block';
+            }
+        }
+    }
+
+    // 버튼 상태 업데이트 함수
+    function updateButtonStates() {
+        // 첫 번째 장면에서는 이전 버튼 비활성화
+        if (currentScene === 0) {
+            prevButton.disabled = true;
+        } else {
+            prevButton.disabled = false;
         }
     }
 
     // 클릭 이벤트
     nextButton.addEventListener('click', nextScene);
+    prevButton.addEventListener('click', prevScene);
 
     // Enter 키 이벤트 추가
     document.addEventListener('keydown', (event) => {
@@ -187,4 +215,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 초기 장면 로드
     showScene(0);
+    updateButtonStates();
 });

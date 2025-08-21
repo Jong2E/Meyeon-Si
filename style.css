@@ -118,9 +118,8 @@ body, html {
     font-weight: 400; /* 일반 굵기 */
 }
 
-#next-button {
+#next-button, #prev-button {
     position: absolute;
-    right: 3%;
     bottom: 10%;
     padding: 1% 2%;
     font-size: 3.3vmin;
@@ -134,7 +133,25 @@ body, html {
     transition: background-color 0.3s ease, color 0.3s ease; /* 부드러운 전환 효과 */
 }
 
-#next-button:hover {
+#next-button {
+    right: 3%;
+}
+
+#prev-button {
+    left: 3%;
+}
+
+#next-button:hover, #prev-button:hover {
     background-color: #4e8d7c; /* 테마 색상 적용 */
     color: #eaf4f4;
+}
+
+#prev-button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+#prev-button:disabled:hover {
+    background-color: #95a5a6;
 }
