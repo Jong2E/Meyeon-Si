@@ -93,11 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (scene.speaker) {
             let characterImage = null;
             
-            // 화자에 따른 캐릭터 이미지 자동 설정
+            // 화자에 따른 캐릭터 이미지 자동 설정 - GitHub raw URL 사용
             if (scene.speaker === "우주") {
-                characterImage = './남주.png';
+                characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EB%82%A8%EC%A3%BC.png?raw=true';
             } else if (scene.speaker === "설하") {
-                characterImage = './여주_쪽지.png';
+                characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80.png?raw=true';
             }
             // 규빈(전화)는 캐릭터 이미지 표시하지 않음
             
