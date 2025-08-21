@@ -100,8 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (scene.speaker === "설하") {
                 // 새로운 배경 제거된 설하 이미지 사용
                 characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80-removebg-preview%201.png?raw=true';
+            } else if (scene.speaker === "규빈(전화)") {
+                // 규빈 전화 이미지 사용
+                characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EB%82%A8%EA%B7%9C%EB%B9%88_%EC%A0%84%ED%99%94.png?raw=true';
             }
-            // 규빈(전화)는 캐릭터 이미지 표시하지 않음
             
             if (characterImage) {
                 const charImg = document.createElement('img');
@@ -116,6 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 설하는 기본 크기 유지하고 살짝 아래로 이동
                     charImg.style.transform = 'scale(1.5) translateY(5%)';
                     charImg.style.transformOrigin = 'bottom center';
+                } else if (scene.speaker === "규빈(전화)") {
+                    // 규빈 전화 이미지는 중앙에 작게 표시
+                    charImg.style.transform = 'scale(0.8) translateY(-10%)';
+                    charImg.style.transformOrigin = 'center center';
                 }
                 
                 // 로컬 이미지 로드 실패 시 GitHub URL로 대체
@@ -127,6 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (scene.speaker === "설하") {
                         // 새로운 배경 제거된 설하 이미지 URL
                         this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80-removebg-preview%201.png';
+                    } else if (scene.speaker === "규빈(전화)") {
+                        // 규빈 전화 이미지 URL
+                        this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EB%82%A8%EA%B7%9C%EB%B9%88_%EC%A0%84%ED%99%94.png';
                     }
                 };
                 
