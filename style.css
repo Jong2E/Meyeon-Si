@@ -53,18 +53,19 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    padding-bottom: 28%; /* 대화창 높이만큼 패딩 조정 */
+    padding-bottom: 30%; /* 대화창 바로 위에 위치하도록 조정 */
 }
 
 #character-layer img {
-    max-width: 65%; /* 캐릭터 크기 확대 */
-    max-height: 75%; /* 화면의 75% 정도 높이로 확대 */
+    max-width: 100%; /* 너비 제한 해제 */
+    max-height: 100%; /* 높이 제한 해제 */
     width: auto;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5)); /* 그림자 효과 강화 */
-    transform: scale(1.2); /* 추가로 20% 확대 */
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.6)); /* 그림자 효과 더 강화 */
+    transform: scale(3); /* 3배 확대 */
     transform-origin: bottom center; /* 하단 중앙 기준으로 확대 */
+    margin-bottom: -10%; /* 대화창에 더 가깝게 조정 */
 }
 
 /* --- 대화창 UI 개선 --- */
