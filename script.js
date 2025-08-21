@@ -119,9 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     charImg.style.transform = 'scale(1.5) translateY(5%)';
                     charImg.style.transformOrigin = 'bottom center';
                 } else if (scene.speaker === "규빈(전화)") {
-                    // 규빈 전화 이미지는 중앙에 작게 표시
-                    charImg.style.transform = 'scale(0.8) translateY(-10%)';
-                    charImg.style.transformOrigin = 'center center';
+                    // 규빈 전화 이미지는 설하와 같은 위치에 표시
+                    charImg.style.transform = 'scale(1.5) translateY(5%)';
+                    charImg.style.transformOrigin = 'bottom center';
                 }
                 
                 // 로컬 이미지 로드 실패 시 GitHub URL로 대체
