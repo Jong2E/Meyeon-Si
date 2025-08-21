@@ -63,7 +63,7 @@ body, html {
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.6)); /* 그림자 효과 더 강화 */
-    transform: scale(3); /* 3배 확대 */
+    transform: scale(1.5); /* 1.5배 확대 (3배의 절반) */
     transform-origin: bottom center; /* 하단 중앙 기준으로 확대 */
     margin-bottom: -10%; /* 대화창에 더 가깝게 조정 */
 }
