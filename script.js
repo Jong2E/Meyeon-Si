@@ -93,17 +93,34 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (scene.speaker) {
             let characterImage = null;
             
-            // 화자에 따른 캐릭터 이미지 자동 설정 - GitHub raw URL 사용
+            // 화자에 따른 캐릭터 이미지 자동 설정
             if (scene.speaker === "우주") {
-                characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EB%82%A8%EC%A3%BC.png?raw=true';
+                // 로컬 파일 먼저 시도, 실패하면 GitHub URL 사용
+                characterImage = './남주.png';
             } else if (scene.speaker === "설하") {
-                characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80.png?raw=true';
+                // 로컬 파일 먼저 시도, 실패하면 GitHub URL 사용
+                characterImage = './여주_쪽지.png';
             }
             // 규빈(전화)는 캐릭터 이미지 표시하지 않음
             
             if (characterImage) {
                 const charImg = document.createElement('img');
                 charImg.src = characterImage;
+                
+                // 로컬 이미지 로드 실패 시 GitHub URL로 대체
+                charImg.onerror = function() {
+                    console.log('Local image failed, trying GitHub URL...');
+                    if (scene.speaker === "우주") {
+                        this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EB%82%A8%EC%A3%BC.png';
+                    } else if (scene.speaker === "설하") {
+                        this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80.png';
+                    }
+                };
+                
+                charImg.onload = function() {
+                    console.log('Character image loaded successfully');
+                };
+                
                 characterLayer.appendChild(charImg);
             }
         }
