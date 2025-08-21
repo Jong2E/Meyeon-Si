@@ -53,7 +53,8 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    padding-bottom: 30%; /* 대화창 바로 위에 위치하도록 조정 */
+    height: 68%; /* 전체 높이에서 대화창 영역(32%)을 뺀 높이 */
+    box-sizing: border-box;
 }
 
 #character-layer img {
@@ -65,7 +66,8 @@ body, html {
     filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.6)); /* 그림자 효과 더 강화 */
     transform: scale(1.5); /* 1.5배 확대 (3배의 절반) */
     transform-origin: bottom center; /* 하단 중앙 기준으로 확대 */
-    margin-bottom: -10%; /* 대화창에 더 가깝게 조정 */
+    position: absolute;
+    bottom: 0; /* 캐릭터 하단을 대화창 상단에 정확히 맞춤 */
 }
 
 /* --- 대화창 UI 개선 --- */
