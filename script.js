@@ -109,8 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // 캐릭터별 개별 스타일 적용
                 if (scene.speaker === "우주") {
-                    // 우주는 작은 크기로 조정
-                    charImg.style.transform = 'scale(1.0)';
+                    // 우주는 1.1 크기로 조정하고 살짝 아래로 이동
+                    charImg.style.transform = 'scale(1.1) translateY(3%)';
                     charImg.style.transformOrigin = 'bottom center';
                 } else if (scene.speaker === "설하") {
                     // 설하는 기본 크기 유지하고 살짝 아래로 이동
