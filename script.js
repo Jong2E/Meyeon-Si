@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 로컬 파일 먼저 시도, 실패하면 GitHub URL 사용
                 characterImage = './남주.png';
             } else if (scene.speaker === "설하") {
-                // 로컬 파일 먼저 시도, 실패하면 GitHub URL 사용
-                characterImage = './여주_쪽지.png';
+                // 배경 제거된 설하 이미지 사용
+                characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80-removebg-preview.png?raw=true';
             }
             // 규빈(전화)는 캐릭터 이미지 표시하지 않음
             
@@ -113,7 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (scene.speaker === "우주") {
                         this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EB%82%A8%EC%A3%BC.png';
                     } else if (scene.speaker === "설하") {
-                        this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80.png';
+                        // 배경 제거된 설하 이미지 URL
+                        this.src = 'https://raw.githubusercontent.com/Jong2E/Meyeon-Si/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80-removebg-preview.png';
                     }
                 };
                 
