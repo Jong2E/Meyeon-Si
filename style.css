@@ -212,6 +212,299 @@ body, html {
     }
 }
 
+/* ===== 캐릭터 설정 화면 스타일 ===== */
+#character-setup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, rgba(46, 62, 80, 0.9) 0%, rgba(78, 141, 124, 0.9) 100%),
+        url('./청년동 회의실 2번.jpg') center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#setup-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8vw;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+    max-width: 90%;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+#setup-title {
+    font-size: 7vw;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 3vw;
+}
+
+#setup-subtitle {
+    font-size: 3.5vw;
+    color: #7f8c8d;
+    margin-bottom: 8vw;
+    line-height: 1.4;
+}
+
+.input-section {
+    margin-bottom: 6vw;
+    text-align: left;
+}
+
+.input-section label {
+    display: block;
+    font-size: 4vw;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 2vw;
+}
+
+#player-name {
+    width: 100%;
+    padding: 4vw;
+    font-size: 4.5vw;
+    border: 2px solid #bdc3c7;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#player-name:focus {
+    border-color: #4e8d7c;
+    box-shadow: 0 0 10px rgba(78, 141, 124, 0.3);
+}
+
+.gender-options {
+    display: flex;
+    gap: 3vw;
+}
+
+.gender-btn {
+    flex: 1;
+    padding: 4vw;
+    font-size: 4vw;
+    font-weight: 600;
+    border: 2px solid #bdc3c7;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.gender-btn:hover {
+    border-color: #4e8d7c;
+    background: #f8f9fa;
+}
+
+.gender-btn.selected {
+    border-color: #4e8d7c;
+    background: #4e8d7c;
+    color: #ffffff;
+}
+
+#confirm-setup {
+    width: 100%;
+    padding: 4vw;
+    font-size: 5vw;
+    font-weight: 700;
+    background: linear-gradient(45deg, #4e8d7c, #2c3e50);
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 3vw;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#confirm-setup:enabled:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #5fa68f, #34495e);
+}
+
+#confirm-setup:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+#back-to-start {
+    width: 100%;
+    padding: 3vw;
+    font-size: 4vw;
+    font-weight: 600;
+    background: transparent;
+    color: #7f8c8d;
+    border: 2px solid #bdc3c7;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#back-to-start:hover {
+    border-color: #95a5a6;
+    color: #2c3e50;
+    background: #f8f9fa;
+}
+
+/* 가로 화면에서 캐릭터 설정 조정 */
+@media (orientation: landscape) {
+    #setup-container {
+        padding: 4vw;
+    }
+    
+    #setup-title {
+        font-size: 5vw;
+        margin-bottom: 2vw;
+    }
+    
+    #setup-subtitle {
+        font-size: 2.5vw;
+        margin-bottom: 4vw;
+    }
+    
+    .input-section {
+        margin-bottom: 3vw;
+    }
+    
+    .input-section label {
+        font-size: 2.8vw;
+        margin-bottom: 1vw;
+    }
+    
+    #player-name {
+        padding: 2.5vw;
+        font-size: 3vw;
+    }
+    
+    .gender-options {
+        gap: 2vw;
+    }
+    
+    .gender-btn {
+        padding: 2.5vw;
+        font-size: 2.8vw;
+    }
+    
+    #confirm-setup {
+        padding: 2.5vw;
+        font-size: 3.5vw;
+        margin-bottom: 2vw;
+    }
+    
+    #back-to-start {
+        padding: 2vw;
+        font-size: 2.8vw;
+    }
+}
+
+/* 데스크톱에서 캐릭터 설정 조정 */
+@media (min-width: 1024px) and (orientation: landscape) {
+    #setup-container {
+        padding: 40px;
+    }
+    
+    #setup-title {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    
+    #setup-subtitle {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+    
+    .input-section {
+        margin-bottom: 25px;
+    }
+    
+    .input-section label {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    #player-name {
+        padding: 15px;
+        font-size: 16px;
+    }
+    
+    .gender-options {
+        gap: 15px;
+    }
+    
+    .gender-btn {
+        padding: 15px;
+        font-size: 16px;
+    }
+    
+    #confirm-setup {
+        padding: 18px;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    #back-to-start {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+/* 큰 데스크톱 화면 */
+@media (min-width: 1920px) {
+    #setup-container {
+        padding: 50px;
+    }
+    
+    #setup-title {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+    
+    #setup-subtitle {
+        font-size: 22px;
+        margin-bottom: 50px;
+    }
+    
+    .input-section label {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    #player-name {
+        padding: 20px;
+        font-size: 20px;
+    }
+    
+    .gender-btn {
+        padding: 20px;
+        font-size: 20px;
+    }
+    
+    #confirm-setup {
+        padding: 22px;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    #back-to-start {
+        padding: 16px;
+        font-size: 18px;
+    }
+}
+
 /* 게임 화면 스타일 */
 #game-screen {
     position: absolute;
@@ -219,6 +512,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
+    display: flex; /* JavaScript에서 display 변경할 때 사용 */
 }
 
 /* 레이어 스타일 */

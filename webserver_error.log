@@ -147,3 +147,22 @@ OSError: [Errno 98] Address already in use
 10.12.27.110 - - [20/Sep/2025 08:40:04] "GET /%EC%B2%A0%EC%82%B0%20%EB%A7%A5%EB%8F%84%EB%82%A0%EB%93%9C.png HTTP/1.1" 200 -
 10.12.27.110 - - [20/Sep/2025 08:40:05] code 404, message File not found
 10.12.27.110 - - [20/Sep/2025 08:40:05] "GET /favicon.ico HTTP/1.1" 404 -
+10.12.27.110 - - [20/Sep/2025 08:47:54] "GET / HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:47:54] "GET /style.css HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:47:54] "GET /script.js HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:47:55] "GET /%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:47:55] code 404, message File not found
+10.12.27.110 - - [20/Sep/2025 08:47:55] "GET /favicon.ico HTTP/1.1" 404 -
+10.12.27.110 - - [20/Sep/2025 08:48:00] "GET /%EC%B2%A0%EC%82%B0%20%EB%A7%A5%EB%8F%84%EB%82%A0%EB%93%9C.png HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:48:03] "GET / HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:48:04] "GET /script.js HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:48:04] "GET /style.css HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:48:04] "GET /%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:48:05] code 404, message File not found
+10.12.27.110 - - [20/Sep/2025 08:48:05] "GET /favicon.ico HTTP/1.1" 404 -
+10.12.27.110 - - [20/Sep/2025 08:48:09] "GET / HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:48:09] "GET /style.css HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:48:09] "GET /script.js HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:48:10] "GET /%EC%B2%AD%EB%85%84%EB%8F%99%20%EB%A1%9C%EB%B9%84.jpg HTTP/1.1" 200 -
+10.12.27.110 - - [20/Sep/2025 08:48:11] code 404, message File not found
+10.12.27.110 - - [20/Sep/2025 08:48:11] "GET /favicon.ico HTTP/1.1" 404 -

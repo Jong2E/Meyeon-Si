@@ -1,34 +1,120 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 시작 화면 요소들
+    // 화면 요소들
     const startScreen = document.getElementById('start-screen');
+    const characterSetup = document.getElementById('character-setup');
     const gameScreen = document.getElementById('game-screen');
+    
+    // 시작 화면 요소들
     const startButton = document.getElementById('start-button');
     
+    // 캐릭터 설정 화면 요소들
+    const playerNameInput = document.getElementById('player-name');
+    const genderButtons = document.querySelectorAll('.gender-btn');
+    const confirmSetupButton = document.getElementById('confirm-setup');
+    const backToStartButton = document.getElementById('back-to-start');
+    
+    // 플레이어 정보 저장 변수
+    let playerInfo = {
+        name: '',
+        gender: ''
+    };
+    
     // 시작 버튼 클릭 이벤트
-    startButton.addEventListener('click', startGame);
+    startButton.addEventListener('click', showCharacterSetup);
+    
+    // 캐릭터 설정 화면 표시
+    function showCharacterSetup() {
+        fadeTransition(startScreen, characterSetup, () => {
+            // 입력 필드 초기화
+            playerNameInput.value = '';
+            playerNameInput.focus();
+            genderButtons.forEach(btn => btn.classList.remove('selected'));
+            updateConfirmButton();
+        });
+    }
+    
+    // 성별 버튼 이벤트
+    genderButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            genderButtons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            playerInfo.gender = button.dataset.gender;
+            updateConfirmButton();
+        });
+    });
+    
+    // 이름 입력 이벤트
+    playerNameInput.addEventListener('input', () => {
+        playerInfo.name = playerNameInput.value.trim();
+        updateConfirmButton();
+    });
+    
+    // Enter 키로 다음 단계 진행
+    playerNameInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' && confirmSetupButton.disabled === false) {
+            startGame();
+        }
+    });
+    
+    // 확인 버튼 상태 업데이트
+    function updateConfirmButton() {
+        const isValid = playerInfo.name.length > 0 && playerInfo.gender !== '';
+        confirmSetupButton.disabled = !isValid;
+    }
+    
+    // 확인 버튼 클릭 이벤트
+    confirmSetupButton.addEventListener('click', startGame);
+    
+    // 돌아가기 버튼 클릭 이벤트
+    backToStartButton.addEventListener('click', () => {
+        fadeTransition(characterSetup, startScreen);
+    });
     
     // 게임 시작 함수
     function startGame() {
-        startScreen.style.opacity = '0';
-        startScreen.style.transition = 'opacity 0.5s ease-out';
+        if (confirmSetupButton.disabled) return;
+        
+        fadeTransition(characterSetup, gameScreen, () => {
+            // 게임 초기화
+            initializeGame();
+        });
+    }
+    
+    // 화면 전환 함수
+    function fadeTransition(fromScreen, toScreen, callback) {
+        fromScreen.style.opacity = '0';
+        fromScreen.style.transition = 'opacity 0.5s ease-out';
         
         setTimeout(() => {
-            startScreen.style.display = 'none';
-            gameScreen.style.display = 'block';
-            gameScreen.style.opacity = '0';
-            gameScreen.style.transition = 'opacity 0.5s ease-in';
+            fromScreen.style.display = 'none';
             
-            // 게임 화면 페이드 인
+            // 게임 화면은 block, 나머지는 flex
+            if (toScreen === gameScreen) {
+                toScreen.style.display = 'block';
+            } else {
+                toScreen.style.display = 'flex';
+            }
+            
+            toScreen.style.opacity = '0';
+            toScreen.style.transition = 'opacity 0.5s ease-in';
+            
             setTimeout(() => {
-                gameScreen.style.opacity = '1';
-                // 게임 시작
-                initializeGame();
+                toScreen.style.opacity = '1';
+                if (callback) callback();
             }, 50);
         }, 500);
     }
     
     // 게임 초기화 함수
     function initializeGame() {
+        console.log('플레이어 정보:', playerInfo); // 디버깅용
+        
+        // 플레이어 정보를 전역으로 설정 (나중에 스토리에서 사용할 수 있도록)
+        window.gameData = {
+            playerName: playerInfo.name,
+            playerGender: playerInfo.gender
+        };
+        
         // 기존 게임 로직 시작
         showScene(0);
         updateButtonStates();
@@ -241,13 +327,14 @@ document.addEventListener('DOMContentLoaded', () => {
     nextButton.addEventListener('click', nextScene);
     prevButton.addEventListener('click', prevScene);
 
-    // Enter 키 이벤트 추가 (게임 시작 후에만 작동)
+    // Enter 키 이벤트 추가
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
-            // 시작 화면에서는 게임 시작
+            // 시작 화면에서는 캐릭터 설정으로
             if (startScreen.style.display !== 'none') {
-                startGame();
+                showCharacterSetup();
             }
+            // 캐릭터 설정 화면에서는 이미 playerNameInput 이벤트에서 처리
             // 게임 화면에서는 다음 장면으로
             else if (gameScreen.style.display !== 'none' && currentScene < story.length) {
                 nextScene();

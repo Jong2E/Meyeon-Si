@@ -16,6 +16,30 @@
             <div id="creator-info">Creator: AIDEA</div>
         </div>
         
+        <!-- 캐릭터 설정 화면 -->
+        <div id="character-setup" style="display: none;">
+            <div id="setup-container">
+                <div id="setup-title">캐릭터 설정</div>
+                <div id="setup-subtitle">게임에서 사용할 정보를 입력해주세요</div>
+                
+                <div class="input-section">
+                    <label for="player-name">이름</label>
+                    <input type="text" id="player-name" placeholder="이름을 입력하세요" maxlength="10">
+                </div>
+                
+                <div class="input-section">
+                    <label>성별</label>
+                    <div class="gender-options">
+                        <button type="button" class="gender-btn" data-gender="male">남성</button>
+                        <button type="button" class="gender-btn" data-gender="female">여성</button>
+                    </div>
+                </div>
+                
+                <button id="confirm-setup" disabled>확인</button>
+                <button id="back-to-start" class="secondary-btn">돌아가기</button>
+            </div>
+        </div>
+        
         <!-- 게임 화면 -->
         <div id="game-screen" style="display: none;">
             <div id="background-layer"></div>
