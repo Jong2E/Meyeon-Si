@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "우주는 호기심에 회의실 2번으로 향했다." },
 
         // 4. 회의실 2번 씬
-        { text: "우주가 문을 열고 회의실 2번으로 들어갔다." },
+        { background: './청년동 회의실 2번.jpg', text: "우주가 문을 열고 회의실 2번으로 들어갔다." },
         { text: "우주는 쪽지를 찾기 위해 주위를 둘러보며 집중하고 있었다." },
         { speaker: "설하", text: "여기서 뭐해?" },
         { speaker: "우주", text: "아… 이 쪽지 보고 왔는데." },
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "둘은 로비라운지로 이동했다." },
 
         // 5. 로비라운지 냉장고 씬
-        { text: "냉장고 앞에 선 우주와 설하." },
+        { background: './청년동 로비.jpg', text: "냉장고 앞에 선 우주와 설하." },
         { speaker: "우주", text: "이건 거 같은데…?" },
         { text: "검은색 텀블러를 꺼내자, 옆면에 포스트잇이 두 겹으로 붙어있다." },
         { text: "첫 번째 포스트잇: “네가 좋아했던 음료 맞지? 우대수 준비해놨어.”" },
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "둘은 웃으며 스페이스 D로 향했다." },
 
         // 7. 스페이스 D 씬
-        { text: "스페이스 D에 도착하니, 문이 살짝 열려 있다." },
+        { background: './청년동 회의실 2번.jpg', text: "스페이스 D에 도착하니, 문이 살짝 열려 있다." },
         { speaker: "우주", text: "여기네. 근데 문이 열려 있는데?" },
         { speaker: "설하", text: "안에 누가 있는 건가?" },
         { text: "둘이 조심스레 들어갔다. 테이블 위에 작은 상자가 놓여 있다." },
@@ -322,9 +322,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function showScene(sceneIndex) {
         const scene = story[sceneIndex];
 
-        // 배경 변경 (필요한 경우)
-        if (scene.background) {
-            backgroundLayer.style.backgroundImage = `url('${scene.background}')`;
+        // 배경 변경 로직 개선 - 현재 장면 또는 이전 장면의 배경을 찾아서 적용
+        let currentBackground = scene.background;
+        
+        // 현재 장면에 배경이 없으면 이전 장면들을 역순으로 검색하여 가장 최근 배경 찾기
+        if (!currentBackground) {
+            for (let i = sceneIndex - 1; i >= 0; i--) {
+                if (story[i].background) {
+                    currentBackground = story[i].background;
+                    break;
+                }
+            }
+        }
+        
+        // 배경이 있으면 적용
+        if (currentBackground) {
+            backgroundLayer.style.backgroundImage = `url('${currentBackground}')`;
         }
 
         // 캐릭터 변경 - 화자에 따라 자동으로 캐릭터 이미지 설정
