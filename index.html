@@ -8,14 +8,25 @@
 </head>
 <body>
     <div id="game-container">
-        <div id="background-layer"></div>
-        <div id="character-layer"></div>
-        <div id="dialogue-layer">
-            <div id="dialogue-box">
-                <div id="speaker-name"></div>
-                <div id="dialogue-text"></div>
-                <button id="prev-button">이전</button>
-                <button id="next-button">다음</button>
+        <!-- 시작 화면 -->
+        <div id="start-screen">
+            <div id="game-title">미연시</div>
+            <div id="subtitle">Visual Novel Game</div>
+            <button id="start-button">게임 시작</button>
+            <div id="creator-info">Creator: AIDEA</div>
+        </div>
+        
+        <!-- 게임 화면 -->
+        <div id="game-screen" style="display: none;">
+            <div id="background-layer"></div>
+            <div id="character-layer"></div>
+            <div id="dialogue-layer">
+                <div id="dialogue-box">
+                    <div id="speaker-name"></div>
+                    <div id="dialogue-text"></div>
+                    <button id="prev-button">이전</button>
+                    <button id="next-button">다음</button>
+                </div>
             </div>
         </div>
     </div>

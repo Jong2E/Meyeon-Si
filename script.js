@@ -1,4 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 시작 화면 요소들
+    const startScreen = document.getElementById('start-screen');
+    const gameScreen = document.getElementById('game-screen');
+    const startButton = document.getElementById('start-button');
+    
+    // 시작 버튼 클릭 이벤트
+    startButton.addEventListener('click', startGame);
+    
+    // 게임 시작 함수
+    function startGame() {
+        startScreen.style.opacity = '0';
+        startScreen.style.transition = 'opacity 0.5s ease-out';
+        
+        setTimeout(() => {
+            startScreen.style.display = 'none';
+            gameScreen.style.display = 'block';
+            gameScreen.style.opacity = '0';
+            gameScreen.style.transition = 'opacity 0.5s ease-in';
+            
+            // 게임 화면 페이드 인
+            setTimeout(() => {
+                gameScreen.style.opacity = '1';
+                // 게임 시작
+                initializeGame();
+            }, 50);
+        }, 500);
+    }
+    
+    // 게임 초기화 함수
+    function initializeGame() {
+        // 기존 게임 로직 시작
+        showScene(0);
+        updateButtonStates();
+    }
+
     const story = [
         // 1. 철산 맥도날드 씬
         { background: './철산 맥도날드.png', speaker: "우주", text: "아니, 남규빈 언제 오는 거야? ㅡㅡ" },
@@ -206,14 +241,20 @@ document.addEventListener('DOMContentLoaded', () => {
     nextButton.addEventListener('click', nextScene);
     prevButton.addEventListener('click', prevScene);
 
-    // Enter 키 이벤트 추가
+    // Enter 키 이벤트 추가 (게임 시작 후에만 작동)
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' && currentScene < story.length) {
-            nextScene();
+        if (event.key === 'Enter') {
+            // 시작 화면에서는 게임 시작
+            if (startScreen.style.display !== 'none') {
+                startGame();
+            }
+            // 게임 화면에서는 다음 장면으로
+            else if (gameScreen.style.display !== 'none' && currentScene < story.length) {
+                nextScene();
+            }
         }
     });
 
-    // 초기 장면 로드
-    showScene(0);
-    updateButtonStates();
+    // 게임은 시작 화면에서 시작하므로 여기서는 초기 로드하지 않음
+    // initializeGame()에서 호출됨
 });
