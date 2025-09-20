@@ -120,7 +120,46 @@ document.addEventListener('DOMContentLoaded', () => {
         updateButtonStates();
     }
 
+    // 동적 텍스트 생성 함수
+    function getDynamicText(text) {
+        if (!window.gameData) return text;
+        
+        const { playerName, playerGender } = window.gameData;
+        
+        // 텍스트 내의 플레이스홀더 치환
+        return text
+            .replace(/\[PLAYER_NAME\]/g, playerName)
+            .replace(/\[EX_RELATIONSHIP\]/g, playerGender === 'male' ? '여자친구' : '남자친구');
+    }
+
     const story = [
+        // 프롤로그: 알 수 없는 끌림
+        { 
+            background: './엘리베이터_배경.jpg', 
+            text: "회사를 그만둔 지 일주일이 지났다. 더 이상 견딜 수 없었다. 매일 야근에 주말 근무, 상사의 무리한 요구들... 몸도 마음도 지쳐있었다." 
+        },
+        { 
+            speaker: "[PLAYER_NAME]", 
+            text: "이제 뭘 해야 하지?" 
+        },
+        { 
+            text: "막막함 속에서 길을 걷다가 문득 '청년동'이라는 간판이 눈에 들어왔다. 갑자기 가슴이 두근거리며 묘한 끌림을 느꼈다." 
+        },
+        { 
+            speaker: "[PLAYER_NAME]", 
+            text: "청년동... 정말 오랜만이다." 
+        },
+        { 
+            text: "예전에 자주 다니던 청년센터였다. 대학 졸업 후 진로를 고민하며 이곳에서 많은 시간을 보냈었는데... 취업하고 나서는 발길을 끊었다. 아니, 정확히는 그 전에 [EX_RELATIONSHIP]와 헤어지면서 이곳과 관련된 모든 것을 피하고 싶어했다." 
+        },
+        { 
+            speaker: "[PLAYER_NAME]", 
+            text: "연인과 헤어진 후로 이런 곳에 오면 자꾸 그때 생각이 난다. 특히 힘들 때마다..." 
+        },
+        { 
+            text: "무언가가 나를 이곳으로 이끌고 있는 것 같았다. 새로운 시작이 필요한 지금, 이상하게도 이곳에서 답을 찾을 수 있을 것만 같았다." 
+        },
+        
         // 1. 철산 맥도날드 씬
         { background: './철산 맥도날드.png', speaker: "우주", text: "아니, 남규빈 언제 오는 거야? ㅡㅡ" },
         { text: "전화벨이 울리고, 우주가 전화를 받는다." },
@@ -216,7 +255,10 @@ document.addEventListener('DOMContentLoaded', () => {
             let characterImage = null;
             
             // 화자에 따른 캐릭터 이미지 자동 설정
-            if (scene.speaker === "우주") {
+            if (scene.speaker === "[PLAYER_NAME]") {
+                // 플레이어는 캐릭터 이미지 표시하지 않음 (1인칭 시점)
+                characterImage = null;
+            } else if (scene.speaker === "우주") {
                 // 특정 대사에서는 우주 이미지 표시하지 않음
                 if (scene.text === "회의실 2번…? 고마웠다고…? 편지…? 무슨 소리지…?") {
                     characterImage = null; // 이미지 표시하지 않음
@@ -274,15 +316,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 화자 이름 및 대사 업데이트
+        // 화자 이름 및 대사 업데이트 (동적 텍스트 적용)
         if (scene.speaker) {
-            speakerName.textContent = scene.speaker;
+            speakerName.textContent = getDynamicText(scene.speaker);
             speakerName.style.display = 'block';
         } else {
             speakerName.style.display = 'none'; // 화자 없으면 숨김 (나레이션)
         }
         
-        dialogueText.textContent = scene.text;
+        dialogueText.textContent = getDynamicText(scene.text);
     }
 
     // 다음 장면으로 이동하는 함수
