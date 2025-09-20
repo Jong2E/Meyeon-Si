@@ -926,3 +926,148 @@ body, html {
         transform: none;
     }
 }
+
+/* ===== 미션 완료 효과 ===== */
+#mission-complete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.mission-popup {
+    background: linear-gradient(135deg, #4e8d7c 0%, #2c3e50 100%);
+    padding: 8vw;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    border: 3px solid #ffffff;
+    max-width: 90%;
+    animation: missionPopup 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.mission-icon {
+    font-size: 15vw;
+    margin-bottom: 4vw;
+    animation: bounce 0.6s ease-out 0.3s both;
+}
+
+.mission-title {
+    font-size: 6vw;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 3vw;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.mission-description {
+    font-size: 4vw;
+    color: #eaf4f4;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+/* 미션 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes missionPopup {
+    from {
+        transform: scale(0.5) translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40%, 43% {
+        transform: translateY(-30px);
+    }
+    70% {
+        transform: translateY(-15px);
+    }
+    90% {
+        transform: translateY(-4px);
+    }
+}
+
+/* 가로 화면에서 미션 효과 조정 */
+@media (orientation: landscape) {
+    .mission-popup {
+        padding: 4vw;
+    }
+    
+    .mission-icon {
+        font-size: 10vw;
+        margin-bottom: 2vw;
+    }
+    
+    .mission-title {
+        font-size: 4vw;
+        margin-bottom: 2vw;
+    }
+    
+    .mission-description {
+        font-size: 2.5vw;
+    }
+}
+
+/* 데스크톱에서 미션 효과 조정 */
+@media (min-width: 1024px) and (orientation: landscape) {
+    .mission-popup {
+        padding: 50px;
+        border-radius: 20px;
+        max-width: 600px;
+    }
+    
+    .mission-icon {
+        font-size: 80px;
+        margin-bottom: 20px;
+    }
+    
+    .mission-title {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+    
+    .mission-description {
+        font-size: 18px;
+    }
+}
+
+/* 큰 데스크톱 화면 */
+@media (min-width: 1920px) {
+    .mission-popup {
+        padding: 60px;
+        max-width: 700px;
+    }
+    
+    .mission-icon {
+        font-size: 100px;
+        margin-bottom: 30px;
+    }
+    
+    .mission-title {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+    
+    .mission-description {
+        font-size: 22px;
+    }
+}

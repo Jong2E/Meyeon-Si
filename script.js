@@ -105,6 +105,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
     
+    // 미션 완료 효과 표시 함수
+    function showMissionComplete(mission) {
+        const missionComplete = document.getElementById('mission-complete');
+        const missionIcon = document.querySelector('.mission-icon');
+        const missionTitle = document.querySelector('.mission-title');
+        const missionDescription = document.querySelector('.mission-description');
+        
+        // 미션 정보 설정
+        missionIcon.textContent = mission.icon;
+        missionTitle.textContent = '미션 완료!';
+        missionDescription.textContent = mission.title;
+        
+        // 미션 완료 팝업 표시
+        missionComplete.style.display = 'flex';
+        
+        // 3초 후 자동으로 사라지게 하거나 클릭 시 사라지게 함
+        const hideMission = () => {
+            missionComplete.style.opacity = '0';
+            setTimeout(() => {
+                missionComplete.style.display = 'none';
+                missionComplete.style.opacity = '1';
+            }, 500);
+        };
+        
+        // 클릭 시 미션 창 닫기
+        missionComplete.addEventListener('click', hideMission, { once: true });
+        
+        // 3초 후 자동으로 닫기
+        setTimeout(hideMission, 3000);
+    }
+
     // 게임 초기화 함수
     function initializeGame() {
         console.log('플레이어 정보:', playerInfo); // 디버깅용
@@ -160,7 +191,62 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "무언가가 나를 이곳으로 이끌고 있는 것 같았다. 새로운 시작이 필요한 지금, 이상하게도 이곳에서 답을 찾을 수 있을 것만 같았다." 
         },
         
-        // 1. 철산 맥도날드 씬
+        // 1장: 변화된 공간, 변하지 않은 따뜻함
+        { 
+            background: './청년동 로비.jpg', 
+            text: "청년동의 유리문을 밀고 들어서니 완전히 달라진 모습에 놀랐다. 예전의 딱딱한 분위기는 사라지고, 따뜻한 우드톤과 밝은 조명으로 꾸며진 아늑한 공간이 펼쳐져 있었다." 
+        },
+        { 
+            text: "오른쪽 라운지에서는 많은 청년들이 작업하고 있었고, 뒤쪽에서는 커피 향이 은은하게 풍겨왔다." 
+        },
+        { 
+            speaker: "인포데스크 직원", 
+            text: "안녕하세요, 출석 체크 부탁드려요." 
+        },
+        { 
+            text: "인포데스크의 젊은 직원이 고개를 들더니 눈이 휘둥그레졌다." 
+        },
+        { 
+            speaker: "미소", 
+            text: "어? 혹시... [PLAYER_NAME]님? 정말 오랜만이시네요!" 
+        },
+        { 
+            speaker: "미소", 
+            text: "저 김미소예요. 몇 년 전까지만 해도 정말 자주 오셨는데..." 
+        },
+        { 
+            speaker: "[PLAYER_NAME]", 
+            text: "죄송해요. 기억이 잘..." 
+        },
+        { 
+            speaker: "미소", 
+            text: "아, 리모델링하면서 예전 기록들이 초기화돼서 새로 등록하셔야 해요." 
+        },
+        { 
+            speaker: "미소", 
+            text: "출석은 하루 두 번, 올 때 한 번 갈 때 한 번 찍으시면 1800포인트 적립돼요." 
+        },
+        { 
+            speaker: "[PLAYER_NAME]", 
+            text: "포인트요?" 
+        },
+        { 
+            speaker: "미소", 
+            text: "네, 청년동에서 쓸 수 있는 포인트예요. 자판기에서 음료나 간식 사 먹을 때 사용할 수 있어서 꽤 유용해요. 꼭 잊지 말고 나가실 때도 찍어주세요!" 
+        },
+        { 
+            text: "출석 체크를 마치고 나니 미소가 말했다." 
+        },
+        { 
+            speaker: "미소", 
+            text: "그럼 천천히 둘러보세요! 공유공간도 많이 바뀌었거든요.",
+            mission: {
+                title: "인포데스크에서 출석 체크 완료 + 미소와의 첫 만남",
+                icon: "🎮"
+            }
+        },
+        
+        // 기존 스토리 (우주와 규빈)
         { background: './철산 맥도날드.png', speaker: "우주", text: "아니, 남규빈 언제 오는 거야? ㅡㅡ" },
         { text: "전화벨이 울리고, 우주가 전화를 받는다." },
         { speaker: "우주", text: "야 너 어디야? 언제 와??" },
@@ -272,6 +358,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (scene.speaker === "규빈(전화)") {
                 // 규빈 전화 이미지 사용
                 characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EB%82%A8%EA%B7%9C%EB%B9%88_%EC%A0%84%ED%99%94.png?raw=true';
+            } else if (scene.speaker === "미소" || scene.speaker === "인포데스크 직원") {
+                // 미소 캐릭터 이미지 (임시로 설하 이미지 사용)
+                characterImage = 'https://github.com/Jong2E/Meyeon-Si/blob/main/%EC%97%AC%EC%A3%BC_%EC%AA%BD%EC%A7%80-removebg-preview%201.png?raw=true';
             }
             
             if (characterImage) {
@@ -325,6 +414,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         dialogueText.textContent = getDynamicText(scene.text);
+        
+        // 미션 완료 체크
+        if (scene.mission) {
+            showMissionComplete(scene.mission);
+        }
     }
 
     // 다음 장면으로 이동하는 함수
