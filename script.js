@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 미션 완료 팝업 표시
         missionComplete.style.display = 'flex';
         
-        // 3초 후 자동으로 사라지게 하거나 클릭 시 사라지게 함
+        // 미션 창 닫기 함수
         const hideMission = () => {
             missionComplete.style.opacity = '0';
             setTimeout(() => {
@@ -129,11 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         };
         
-        // 클릭 시 미션 창 닫기
+        // 클릭 시에만 미션 창 닫기 (자동 닫기 제거)
         missionComplete.addEventListener('click', hideMission, { once: true });
-        
-        // 3초 후 자동으로 닫기
-        setTimeout(hideMission, 3000);
     }
 
     // 게임 초기화 함수

@@ -972,6 +972,15 @@ body, html {
     color: #eaf4f4;
     line-height: 1.4;
     font-weight: 400;
+    margin-bottom: 3vw;
+}
+
+.mission-close-hint {
+    font-size: 3vw;
+    color: #b0c4de;
+    opacity: 0.8;
+    font-weight: 300;
+    animation: fadeIn 2s ease-in-out;
 }
 
 /* 미션 애니메이션 */
@@ -1024,6 +1033,11 @@ body, html {
     
     .mission-description {
         font-size: 2.5vw;
+        margin-bottom: 2vw;
+    }
+    
+    .mission-close-hint {
+        font-size: 2vw;
     }
 }
 
@@ -1047,6 +1061,11 @@ body, html {
     
     .mission-description {
         font-size: 18px;
+        margin-bottom: 15px;
+    }
+    
+    .mission-close-hint {
+        font-size: 14px;
     }
 }
 
@@ -1069,5 +1088,10 @@ body, html {
     
     .mission-description {
         font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    .mission-close-hint {
+        font-size: 16px;
     }
 }
